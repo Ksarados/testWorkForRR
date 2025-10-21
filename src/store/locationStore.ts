@@ -1,10 +1,11 @@
 import { makeAutoObservable } from 'mobx';
 import { locationIvanovo } from '../constants/defaultValues';
+import { locationKrasnodar } from '../constants/defaultValues';
 
 class LocationStore {
   location = {
-    latitude: locationIvanovo.latitude,
-    longitude: locationIvanovo.longitude,
+    latitude: locationKrasnodar.latitude,
+    longitude: locationKrasnodar.longitude,
   };
   constructor() {
     makeAutoObservable(this);

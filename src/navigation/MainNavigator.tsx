@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import {
   createNativeStackNavigator,
   NativeStackNavigationProp,
@@ -7,7 +7,6 @@ import { observer } from 'mobx-react-lite';
 import HomeScreen from '../screens/Home';
 import { InformationScreen } from '../screens/Information';
 import { getShifts } from '../services/getShifts';
-import { ShiftsData } from '../types/shifts';
 import { shiftsStore } from '../store/shiftsStore';
 import { locationStore } from '../store/locationStore';
 
@@ -35,6 +34,7 @@ export default observer(function MainNavigator() {
           locationStore.location.latitude,
           locationStore.location.longitude
         );
+        console.log('response', response);
         if (response && Array.isArray(response?.data?.data)) {
           shiftsStore.addShifts(response.data.data);
         }
@@ -46,8 +46,15 @@ export default observer(function MainNavigator() {
     loadData();
   }, []);
 
+  console.log('Load:', shiftsStore.shifts);
+
   return (
-    <Stack.Navigator initialRouteName='Home'>
+    <Stack.Navigator
+      initialRouteName='Home'
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
       <Stack.Screen name='Home' component={HomeScreen} />
       <Stack.Screen name='Details' component={InformationScreen} />
     </Stack.Navigator>
