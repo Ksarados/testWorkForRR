@@ -31,7 +31,11 @@ export default function MainNavigator() {
     const loadData = async () => {
       try {
         const response = await getShifts();
-        setShifts(response?.data);
+        if (response && Array.isArray(response?.data)) {
+          setShifts(response.data);
+        } else {
+          setShifts([]);
+        }
       } catch (error) {
         console.log(error);
       }
@@ -39,8 +43,6 @@ export default function MainNavigator() {
 
     loadData();
   }, []);
-
-  console.log('shifts:', shifts);
 
   return (
     <Stack.Navigator initialRouteName='Home'>
