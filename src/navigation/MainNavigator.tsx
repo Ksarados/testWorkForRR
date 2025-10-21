@@ -43,8 +43,6 @@ export default observer(function MainNavigator() {
       }
     };
 
-    console.log('ShiftsStore', shiftsStore.shifts);
-
     loadData();
   }, []);
 
