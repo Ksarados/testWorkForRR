@@ -6,7 +6,11 @@ module.exports = {
     sourceType: 'module',
     ecmaFeatures: { jsx: true },
   },
-    rules: {
+  env: {
+    node: true,
+    es2021: true,
+  },
+  rules: {
     // TypeScript
     '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
     '@typescript-eslint/explicit-function-return-type': 'off',
@@ -35,6 +39,5 @@ module.exports = {
     'plugin:react/recommended',
     'plugin:react-native/all',
     'plugin:prettier/recommended',
-    '@react-native', 
   ],
 };
