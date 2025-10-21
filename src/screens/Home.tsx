@@ -1,25 +1,29 @@
-import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import { HomeScreenNavigationProp } from '../navigation/MainNavigator';
+import { StyleSheet, FlatList } from 'react-native';
+import { observer } from 'mobx-react-lite';
+import { shiftsStore } from '../store/shiftsStore';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { ShiftCard } from '../components/ShiftCard/ShiftCard';
+import { Colors } from '../constants/colors';
+import { Header } from '../components/UI/Header';
 
-export default function HomeScreen() {
-  const navigation = useNavigation<HomeScreenNavigationProp>();
+export default observer(function HomeScreen() {
   return (
-    <View style={styles.container}>
-      <Text>Home Screen</Text>
-      <TouchableOpacity onPress={() => navigation.navigate('Details')}>
-        <Text>Go to Details</Text>
-      </TouchableOpacity>
-    </View>
+    <SafeAreaView style={styles.container}>
+      <Header />
+      <FlatList
+        data={shiftsStore.shifts}
+        renderItem={(item) => <ShiftCard item={item.item} />}
+      />
+    </SafeAreaView>
   );
-}
+});
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: Colors.lightGray,
+    padding: 16,
   },
 });

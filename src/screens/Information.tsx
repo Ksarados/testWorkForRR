@@ -8,7 +8,7 @@ export function InformationScreen() {
   return (
     <View style={styles.container}>
       <Text>Details Screen</Text>
-        <TouchableOpacity onPress={() => navigation.goBack()} >
+      <TouchableOpacity onPress={() => navigation.goBack()}>
         <Text>Go to Home</Text>
       </TouchableOpacity>
     </View>
@@ -18,7 +18,6 @@ export function InformationScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
   },
