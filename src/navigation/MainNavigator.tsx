@@ -3,11 +3,13 @@ import {
   createNativeStackNavigator,
   NativeStackNavigationProp,
 } from '@react-navigation/native-stack';
+import { observer } from 'mobx-react-lite';
 import HomeScreen from '../screens/Home';
 import { InformationScreen } from '../screens/Information';
 import { getShifts } from '../services/getShifts';
 import { ShiftsData } from '../types/shifts';
-import { location } from '../constants/defaultValues';
+import { shiftsStore } from '../store/shiftsStore';
+import { locationStore } from '../store/locationStore';
 
 type RootStackParamList = {
   Home: undefined;
@@ -25,17 +27,16 @@ export type DetailsScreenNavigationProp = NativeStackNavigationProp<
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
-export default function MainNavigator() {
-  const [shifts, setShifts] = useState<ShiftsData[]>([]);
-
+export default observer(function MainNavigator() {
   useEffect(() => {
     const loadData = async () => {
       try {
-        const response = await getShifts(location.latitude, location.longitude);
+        const response = await getShifts(
+          locationStore.location.latitude,
+          locationStore.location.longitude
+        );
         if (response && Array.isArray(response?.data?.data)) {
-          setShifts(response.data.data);
-        } else {
-          setShifts([]);
+          shiftsStore.addShifts(response.data.data);
         }
       } catch (error) {
         console.log(error);
@@ -51,4 +52,4 @@ export default function MainNavigator() {
       <Stack.Screen name='Details' component={InformationScreen} />
     </Stack.Navigator>
   );
-}
+});
