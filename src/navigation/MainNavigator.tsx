@@ -8,7 +8,8 @@ import HomeScreen from '../screens/Home';
 import { InformationScreen } from '../screens/Information';
 import { getShifts } from '../services/getShifts';
 import { ShiftsData } from '../types/shifts';
-import { locationKrasnodar } from '../constants/defaultValues';
+import { shiftsStore } from '../store/shiftsStore';
+import { locationStore } from '../store/locationStore';
 
 type RootStackParamList = {
   Home: undefined;
@@ -27,24 +28,22 @@ export type DetailsScreenNavigationProp = NativeStackNavigationProp<
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default observer(function MainNavigator() {
-  const [shifts, setShifts] = useState<ShiftsData[]>([]);
-
   useEffect(() => {
     const loadData = async () => {
       try {
         const response = await getShifts(
-          locationKrasnodar.latitude,
-          locationKrasnodar.longitude
+          locationStore.location.latitude,
+          locationStore.location.longitude
         );
         if (response && Array.isArray(response?.data?.data)) {
-          setShifts(response.data.data);
-        } else {
-          setShifts([]);
+          shiftsStore.addShifts(response.data.data);
         }
       } catch (error) {
         console.log(error);
       }
     };
+
+    console.log('ShiftsStore', shiftsStore.shifts);
 
     loadData();
   }, []);

@@ -4,6 +4,6 @@ export const locationKrasnodar = {
 };
 
 export const locationIvanovo = {
-  latitude: 56.999799,
-  longitude: 40.973014,
+  latitude: 40.973014,
+  longitude: 56.999799,
 };

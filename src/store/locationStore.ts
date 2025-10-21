@@ -1,7 +1,7 @@
 import { makeAutoObservable } from 'mobx';
 import { locationIvanovo } from '../constants/defaultValues';
 
-export class LocationStore {
+class LocationStore {
   location = {
     latitude: locationIvanovo.latitude,
     longitude: locationIvanovo.longitude,
@@ -15,3 +15,5 @@ export class LocationStore {
     this.location.longitude = longitude;
   };
 }
+
+export const locationStore = new LocationStore();
