@@ -6,6 +6,7 @@
   "compilerOptions": {
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
+    "typeRoots": ["./node_modules/@types", "./declarations.d.ts"],
     "target": "esnext",
     "module": "esnext",
     "jsx": "react-jsx"

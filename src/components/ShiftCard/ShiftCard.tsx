@@ -4,9 +4,12 @@ import { HomeScreenNavigationProp } from '../../navigation/MainNavigator';
 import { ShiftsData } from '../../types/shifts';
 import { Colors } from '../../constants/colors';
 import { ShiftHeader } from './ShiftHeader';
+import StarIcon from '../../../assets/iconSvg/StarIcon';
 
 export const ShiftCard = ({ item }: { item: ShiftsData }) => {
   const navigation = useNavigation<HomeScreenNavigationProp>();
+
+  console.log('svg', StarIcon);
 
   return (
     <TouchableOpacity
@@ -24,8 +27,9 @@ export const ShiftCard = ({ item }: { item: ShiftsData }) => {
         <Text style={styles.footerText}>{item.companyName}</Text>
         <Text style={styles.footerText}>{item.address}</Text>
         <View style={styles.ratingView}>
+          <StarIcon width={24} height={24} fill='#FFA500' />
           <Text>{item.customerRating}</Text>
-          <Text> ({item.customerFeedbacksCount})</Text>
+          <Text>({item.customerFeedbacksCount})</Text>
         </View>
       </View>
     </TouchableOpacity>
@@ -61,5 +65,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     marginHorizontal: 20,
     paddingVertical: 5,
+    alignItems: 'center',
+    gap: 5,
   },
 });

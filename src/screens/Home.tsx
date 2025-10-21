@@ -4,10 +4,12 @@ import { shiftsStore } from '../store/shiftsStore';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ShiftCard } from '../components/ShiftCard/ShiftCard';
 import { Colors } from '../constants/colors';
+import { Header } from '../components/UI/Header';
 
 export default observer(function HomeScreen() {
   return (
     <SafeAreaView style={styles.container}>
+      <Header />
       <FlatList
         data={shiftsStore.shifts}
         renderItem={(item) => <ShiftCard item={item.item} />}
