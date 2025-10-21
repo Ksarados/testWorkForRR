@@ -7,6 +7,7 @@ import HomeScreen from '../screens/Home';
 import { InformationScreen } from '../screens/Information';
 import { getShifts } from '../services/getShifts';
 import { ShiftsData } from '../types/shifts';
+import { location } from '../constants/defaultValues';
 
 type RootStackParamList = {
   Home: undefined;
@@ -30,9 +31,9 @@ export default function MainNavigator() {
   useEffect(() => {
     const loadData = async () => {
       try {
-        const response = await getShifts();
-        if (response && Array.isArray(response?.data)) {
-          setShifts(response.data);
+        const response = await getShifts(location.latitude, location.longitude);
+        if (response && Array.isArray(response?.data?.data)) {
+          setShifts(response.data.data);
         } else {
           setShifts([]);
         }

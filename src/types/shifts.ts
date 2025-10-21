@@ -29,6 +29,8 @@ export type ShiftsData = {
 };
 
 export type GetShiftsResponse = {
-  data: ShiftsData[];
+  data: {
+    data: ShiftsData[];
+  };
   status: number;
 };
