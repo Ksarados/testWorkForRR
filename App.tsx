@@ -4,11 +4,10 @@ import { StatusBar } from 'react-native';
 import MainNavigator from './src/navigation/MainNavigator';
 
 export default function App() {
-  
-  return(
+  return (
     <NavigationContainer>
-      <StatusBar barStyle="dark-content" />
+      <StatusBar barStyle='dark-content' />
       <MainNavigator />
     </NavigationContainer>
-  )
+  );
 }
