@@ -9,10 +9,11 @@ import { InformationScreen } from '../screens/Information';
 import { getShifts } from '../services/getShifts';
 import { shiftsStore } from '../store/shiftsStore';
 import { locationStore } from '../store/locationStore';
+import { ShiftsData } from '../types/shifts';
 
-type RootStackParamList = {
+export type RootStackParamList = {
   Home: undefined;
-  Details: undefined;
+  Details: { item: ShiftsData };
 };
 
 export type HomeScreenNavigationProp = NativeStackNavigationProp<
