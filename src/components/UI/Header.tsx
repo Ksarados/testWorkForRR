@@ -39,7 +39,7 @@ export const Header = observer(({ searchText, setSearchText }: HeaderProps) => {
         onPress={() => console.log('Выбрать город')}
       >
         <LocationIcon />
-        <Text>г. {locationStore.city || null}</Text>
+        {locationStore.city && <Text>г. {locationStore.city}</Text>}
         <ArrowDownIcon />
       </TouchableOpacity>
     </View>

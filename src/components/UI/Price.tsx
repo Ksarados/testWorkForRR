@@ -11,7 +11,6 @@ export const Price = ({ price }: PriceProps) => {
       <View style={styles.price}>
         <Text>до {price} ₽</Text>
       </View>
-      <View style={styles.marginPrice} />
     </View>
   );
 };
@@ -26,8 +25,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 10,
     paddingVertical: 5,
-  },
-  marginPrice: {
-    flex: 1,
   },
 });
