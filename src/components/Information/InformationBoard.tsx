@@ -5,6 +5,7 @@ import { Price } from '../UI/Price';
 import { DictionaryText } from '../UI/DictionaryText';
 import StarIcon from '../../../assets/iconSvg/StarIcon';
 import { FeedBack } from '../FeedBack/FeedBack';
+import { Button } from '../UI/Button';
 
 type InformationBoardProps = {
   shift: ShiftsData;
@@ -55,7 +56,6 @@ export const InformationBoard = ({ shift }: InformationBoardProps) => {
             </Text>
           </View>
         </View>
-        {/* <View style={styles.marginHeader} /> */}
         <Image
           style={styles.logo}
           source={shift.logo ? { uri: shift.logo } : undefined}
@@ -63,6 +63,10 @@ export const InformationBoard = ({ shift }: InformationBoardProps) => {
       </View>
       <FeedBack worked={shift.workTypes[0].nameOne} />
       <View style={styles.marginHeader} />
+      <Button
+        title='Откликнуться'
+        onPress={() => console.log('Вы откликнулись')}
+      />
     </View>
   );
 };
