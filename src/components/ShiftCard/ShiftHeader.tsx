@@ -1,23 +1,18 @@
 import { Image, Text, View, StyleSheet } from 'react-native';
 import { ShiftsData } from '../../types/shifts';
-import { Colors } from '../../constants/colors';
+import { Price } from '../UI/Price';
+import { DictionaryText } from '../UI/DictionaryText';
 
 export const ShiftHeader = ({ item }: { item: ShiftsData }) => {
   return (
     <View style={styles.container}>
       <View style={styles.titleView}>
         <Text style={styles.header}>{item.workTypes[0].name}</Text>
-        <View style={styles.flexRow}>
-          <Text style={styles.workersTitle}>Откликнулось: </Text>
-          <Text>{item.currentWorkers} / </Text>
-          <Text>{item.planWorkers}</Text>
-        </View>
-        <View style={styles.flexRow}>
-          <View style={styles.price}>
-            <Text>до {item.priceWorker} ₽</Text>
-          </View>
-          <View style={styles.marginPrice} />
-        </View>
+        <DictionaryText
+          textKey='Откликнулось: '
+          textValue={`${item.currentWorkers} / ${item.planWorkers}`}
+        />
+        <Price price={item.priceWorker} />
       </View>
       <Image
         source={item.logo ? { uri: item.logo } : undefined}
@@ -44,22 +39,7 @@ const styles = StyleSheet.create({
   header: {
     fontSize: 16,
     fontWeight: '600',
-  },
-  workersTitle: {
-    fontWeight: '500',
-    color: Colors.darkGray,
-  },
-  price: {
-    backgroundColor: Colors.orange,
-    borderRadius: 4,
-    alignItems: 'center',
-    paddingHorizontal: 10,
-    paddingVertical: 5,
-  },
-  flexRow: {
-    flexDirection: 'row',
-  },
-  marginPrice: {
-    flex: 1,
+    flexShrink: 1,
+    flexWrap: 'wrap',
   },
 });

@@ -23,6 +23,7 @@ export default observer(function HomeScreen() {
       <FlatList
         data={filteredShifts}
         renderItem={(item) => <ShiftCard item={item.item} />}
+        showsVerticalScrollIndicator={false}
       />
     </SafeAreaView>
   );

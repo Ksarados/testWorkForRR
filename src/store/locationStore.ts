@@ -1,5 +1,4 @@
 import { makeAutoObservable } from 'mobx';
-import { locationIvanovo } from '../constants/defaultValues';
 import { locationKrasnodar } from '../constants/defaultValues';
 
 class LocationStore {
@@ -7,6 +6,7 @@ class LocationStore {
     latitude: locationKrasnodar.latitude,
     longitude: locationKrasnodar.longitude,
   };
+  city: string | null = null;
   constructor() {
     makeAutoObservable(this);
   }
@@ -14,6 +14,10 @@ class LocationStore {
   setLocation = (latitude: number, longitude: number) => {
     this.location.latitude = latitude;
     this.location.longitude = longitude;
+  };
+
+  setCity = (city: string) => {
+    this.city = city;
   };
 }
 
