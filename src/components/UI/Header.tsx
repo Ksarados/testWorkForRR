@@ -17,7 +17,6 @@ type HeaderProps = {
 };
 
 export const Header = ({ searchText, setSearchText }: HeaderProps) => {
-  console.log('Header', FilterIcon);
   return (
     <View style={styles.container}>
       <View style={[styles.whiteView, styles.searchView]}>

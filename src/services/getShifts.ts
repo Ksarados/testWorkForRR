@@ -7,6 +7,12 @@ export const getShifts = async (
   longitude?: number
 ): Promise<GetShiftsResponse> => {
   try {
+    console.log('URL:', URLs.shifts, {
+      params: {
+        latitude,
+        longitude,
+      },
+    });
     const response = await getRequest<GetShiftsResponse>(URLs.shifts, {
       params: {
         latitude,

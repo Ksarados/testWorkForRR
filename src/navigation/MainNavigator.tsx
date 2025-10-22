@@ -10,6 +10,7 @@ import { getShifts } from '../services/getShifts';
 import { shiftsStore } from '../store/shiftsStore';
 import { locationStore } from '../store/locationStore';
 import { ShiftsData } from '../types/shifts';
+import { getCurrentLocation } from '../utils/location';
 
 export type RootStackParamList = {
   Home: undefined;
@@ -31,6 +32,12 @@ export default observer(function MainNavigator() {
   useEffect(() => {
     const loadData = async () => {
       try {
+        const coords = await getCurrentLocation();
+        if (coords) {
+          locationStore.setLocation(coords.latitude, coords.longitude);
+          console.log('locationStore', coords.latitude, coords.longitude);
+        }
+
         const response = await getShifts(
           locationStore.location.latitude,
           locationStore.location.longitude
