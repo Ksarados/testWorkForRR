@@ -51,6 +51,7 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: 18,
     fontWeight: '600',
+    flexShrink: 1,
   },
   marginSubHeader: {
     flex: 1,

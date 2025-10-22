@@ -15,7 +15,9 @@ export const DictionaryText = ({
   return (
     <View style={[styles.container, styleProps]}>
       <Text style={styles.titleKey}>{textKey}</Text>
-      <Text style={styles.text}>{textValue}</Text>
+      <Text style={styles.text} numberOfLines={2} ellipsizeMode='tail'>
+        {textValue}
+      </Text>
     </View>
   );
 };
@@ -23,10 +25,12 @@ export const DictionaryText = ({
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
+    //flexWrap: 'wrap',
   },
   titleKey: {
     fontWeight: '500',
     color: Colors.darkGray,
+    marginRight: 4,
   },
   text: {
     flexShrink: 1,

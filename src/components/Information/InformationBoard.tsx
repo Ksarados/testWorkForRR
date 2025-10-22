@@ -16,26 +16,26 @@ export const InformationBoard = ({ shift }: InformationBoardProps) => {
   const planWorkers = `${shift.currentWorkers} / ${shift.planWorkers}`;
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <DictionaryText
-          textKey='Требуется: '
-          textValue={shift.workTypes[0].name}
-        />
-        <View style={styles.marginHeader} />
+      {/* Из-за длинноно текста езжает Price и только с этим костылем работает корректно */}
+      <View style={styles.subHeader}>
+        <Text style={styles.textWorker}>
+          <Text style={styles.textWorker2}>Требуется: </Text>
+          <Text>{shift.workTypes[0].nameOne}</Text>
+        </Text>
         <Price price={shift.priceWorker} />
       </View>
       <DictionaryText
-        textKey='Откликнулось: '
+        textKey='Откликнулось:'
         textValue={planWorkers}
         styleProps={styles.marginTextPlan}
       />
       <DictionaryText
-        textKey='Смена: '
+        textKey='Смена:'
         textValue={shiftDateAndTime}
         styleProps={styles.marginText}
       />
       <DictionaryText
-        textKey='Работодатель: '
+        textKey='Работодатель:'
         textValue={shift.companyName}
         styleProps={styles.marginText}
       />
@@ -81,6 +81,22 @@ const styles = StyleSheet.create({
   },
   header: {
     flexDirection: 'row',
+  },
+  subHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignContent: 'space-between',
+    alignItems: 'center',
+    gap: 8,
+    marginHorizontal: 0,
+  },
+  textWorker: {
+    flexShrink: 1,
+    flexWrap: 'wrap',
+  },
+  textWorker2: {
+    color: Colors.darkGray,
+    fontWeight: '500',
   },
   marginHeader: {
     flex: 1,
