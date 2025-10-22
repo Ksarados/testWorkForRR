@@ -5,13 +5,24 @@ import LocationIcon from '../../../assets/iconSvg/LocationIcon';
 import ArrowDownIcon from '../../../assets/iconSvg/ArrowDownIcon';
 import { Colors } from '../../constants/colors';
 
-export const Header = () => {
+type HeaderProps = {
+  searchText: string;
+  setSearchText: (text: string) => void;
+};
+
+export const Header = ({ searchText, setSearchText }: HeaderProps) => {
   console.log('Header', FilterIcon);
   return (
     <View style={styles.container}>
       <View style={[styles.whiteView, styles.searchView]}>
         <SearchIcon />
-        <TextInput placeholder='Поиск по должности' />
+        <TextInput
+          style={styles.textInput}
+          placeholder='Поиск по должности'
+          placeholderTextColor={Colors.darkGray}
+          value={searchText}
+          onChangeText={setSearchText}
+        />
       </View>
       <View>
         <FilterIcon />
@@ -29,13 +40,8 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
-    height: 40,
+    height: 45,
     gap: 4,
-  },
-  searchTitle: {
-    fontWeight: '200',
-    color: Colors.darkGray,
-    fontSize: 12,
   },
   whiteView: {
     backgroundColor: Colors.white,
@@ -48,5 +54,10 @@ const styles = StyleSheet.create({
   },
   searchView: {
     flex: 1,
+  },
+  textInput: {
+    flex: 1,
+    color: Colors.black,
+    paddingVertical: 0,
   },
 });
