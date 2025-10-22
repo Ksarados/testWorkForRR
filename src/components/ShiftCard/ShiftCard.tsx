@@ -9,12 +9,10 @@ import StarIcon from '../../../assets/iconSvg/StarIcon';
 export const ShiftCard = ({ item }: { item: ShiftsData }) => {
   const navigation = useNavigation<HomeScreenNavigationProp>();
 
-  console.log('svg', StarIcon);
-
   return (
     <TouchableOpacity
       style={[styles.container, styles.shadow]}
-      onPress={() => navigation.navigate('Details')}
+      onPress={() => navigation.navigate('Details', { item })}
     >
       <ShiftHeader item={item} />
       <View style={styles.shiftDateView}>

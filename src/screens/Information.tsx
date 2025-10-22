@@ -2,9 +2,21 @@ import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { DetailsScreenNavigationProp } from '../navigation/MainNavigator';
+import { ShiftsData } from '../types/shifts';
+import { RouteProp } from '@react-navigation/native';
+import { RootStackParamList } from '../navigation/MainNavigator';
 
-export function InformationScreen() {
+type InformationScreenRouteProp = RouteProp<RootStackParamList, 'Details'>;
+
+type Props = {
+  route: InformationScreenRouteProp;
+};
+
+export function InformationScreen({ route }: Props) {
   const navigation = useNavigation<DetailsScreenNavigationProp>();
+
+  console.log('route', route.params.item);
+
   return (
     <View style={styles.container}>
       <Text>Details Screen</Text>
