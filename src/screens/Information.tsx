@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import { RouteProp } from '@react-navigation/native';
@@ -29,7 +29,12 @@ export function InformationScreen({ route }: Props) {
         <Text style={styles.headerTitle}>{shift.workTypes[0].name}</Text>
         <View style={styles.marginSubHeader} />
       </View>
-      <InformationBoard shift={shift} />
+      <ScrollView
+        contentContainerStyle={styles.scroll}
+        showsVerticalScrollIndicator={false}
+      >
+        <InformationBoard shift={shift} />
+      </ScrollView>
     </SafeAreaView>
   );
 }
@@ -51,5 +56,8 @@ const styles = StyleSheet.create({
   },
   marginSubHeader: {
     flex: 1,
+  },
+  scroll: {
+    flexGrow: 1,
   },
 });
