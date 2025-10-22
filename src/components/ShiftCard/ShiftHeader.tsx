@@ -39,5 +39,7 @@ const styles = StyleSheet.create({
   header: {
     fontSize: 16,
     fontWeight: '600',
+    flexShrink: 1,
+    flexWrap: 'wrap',
   },
 });

@@ -19,8 +19,6 @@ export function InformationScreen({ route }: Props) {
   const navigation = useNavigation<DetailsScreenNavigationProp>();
   const shift = route.params.item;
 
-  console.log('route', route.params.item);
-
   return (
     <SafeAreaView style={styles.container}>
       <Header searchText='' setSearchText={() => {}} />
