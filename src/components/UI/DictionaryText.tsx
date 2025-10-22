@@ -15,7 +15,7 @@ export const DictionaryText = ({
   return (
     <View style={[styles.container, styleProps]}>
       <Text style={styles.titleKey}>{textKey}</Text>
-      <Text>{textValue}</Text>
+      <Text style={styles.text}>{textValue}</Text>
     </View>
   );
 };
@@ -27,5 +27,8 @@ const styles = StyleSheet.create({
   titleKey: {
     fontWeight: '500',
     color: Colors.darkGray,
+  },
+  text: {
+    flexShrink: 1,
   },
 });

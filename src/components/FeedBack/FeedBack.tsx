@@ -15,14 +15,13 @@ export const FeedBack = ({ worked }: { worked: string }) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     justifyContent: 'center',
     backgroundColor: Colors.lightOrange,
     borderRadius: 4,
-    padding: 12,
+    padding: 16,
   },
   title: {
     fontWeight: '600',
-    marginBottom: 4,
+    marginBottom: 8,
   },
 });

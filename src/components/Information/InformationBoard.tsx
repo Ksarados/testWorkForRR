@@ -43,24 +43,26 @@ export const InformationBoard = ({ shift }: InformationBoardProps) => {
         textValue={shift.address}
         styleProps={styles.marginText}
       />
-      <View style={styles.header}>
-        <View>
+      <View style={[styles.header, styles.feedBack]}>
+        <View style={styles.marginHeader}>
           <Text style={styles.retingTitle}>
             Отзывы о работодателе {'\n'} {shift.companyName}
           </Text>
           <View style={styles.ratingView}>
             <StarIcon width={24} height={24} fill={Colors.orangeDark} />
-            <Text>{shift.customerRating}</Text>
-            <Text>({shift.customerFeedbacksCount})</Text>
+            <Text>
+              {shift.customerRating} ({shift.customerFeedbacksCount})
+            </Text>
           </View>
         </View>
-        <View style={styles.marginHeader} />
+        {/* <View style={styles.marginHeader} /> */}
         <Image
           style={styles.logo}
           source={shift.logo ? { uri: shift.logo } : undefined}
         />
       </View>
       <FeedBack worked={shift.workTypes[0].nameOne} />
+      <View style={styles.marginHeader} />
     </View>
   );
 };
@@ -86,6 +88,8 @@ const styles = StyleSheet.create({
   retingTitle: {
     fontSize: 16,
     fontWeight: '500',
+    flexShrink: 1,
+    flexWrap: 'wrap',
   },
   ratingView: {
     flexDirection: 'row',
@@ -100,5 +104,8 @@ const styles = StyleSheet.create({
   marginTextPlan: {
     marginBottom: 16,
     marginTop: 6,
+  },
+  feedBack: {
+    marginVertical: 10,
   },
 });
