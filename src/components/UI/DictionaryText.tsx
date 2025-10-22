@@ -4,11 +4,16 @@ import { Colors } from '../../constants/colors';
 type PlanWorkersProps = {
   textKey: string;
   textValue: string;
+  styleProps?: object;
 };
 
-export const DictionaryText = ({ textKey, textValue }: PlanWorkersProps) => {
+export const DictionaryText = ({
+  textKey,
+  textValue,
+  styleProps,
+}: PlanWorkersProps) => {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, styleProps]}>
       <Text style={styles.titleKey}>{textKey}</Text>
       <Text>{textValue}</Text>
     </View>

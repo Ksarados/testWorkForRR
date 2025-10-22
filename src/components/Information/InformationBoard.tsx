@@ -1,10 +1,10 @@
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet } from 'react-native';
 import { ShiftsData } from '../../types/shifts';
 import { Colors } from '../../constants/colors';
 import { Price } from '../UI/Price';
-import { PlanWorkers } from '../ShiftCard/PlanWorkers';
-import { ShiftDate } from '../ShiftCard/ShiftDate';
 import { DictionaryText } from '../UI/DictionaryText';
+import StarIcon from '../../../assets/iconSvg/StarIcon';
+import { FeedBack } from '../FeedBack/FeedBack';
 
 type InformationBoardProps = {
   shift: ShiftsData;
@@ -23,10 +23,44 @@ export const InformationBoard = ({ shift }: InformationBoardProps) => {
         <View style={styles.marginHeader} />
         <Price price={shift.priceWorker} />
       </View>
-      <DictionaryText textKey='Откликнулось: ' textValue={planWorkers} />
-      <DictionaryText textKey='Смена: ' textValue={shiftDateAndTime} />
-      <DictionaryText textKey='Работодатель: ' textValue={shift.companyName} />
-      <DictionaryText textKey='Адрес: ' textValue={shift.address} />
+      <DictionaryText
+        textKey='Откликнулось: '
+        textValue={planWorkers}
+        styleProps={styles.marginTextPlan}
+      />
+      <DictionaryText
+        textKey='Смена: '
+        textValue={shiftDateAndTime}
+        styleProps={styles.marginText}
+      />
+      <DictionaryText
+        textKey='Работодатель: '
+        textValue={shift.companyName}
+        styleProps={styles.marginText}
+      />
+      <DictionaryText
+        textKey='Адрес: '
+        textValue={shift.address}
+        styleProps={styles.marginText}
+      />
+      <View style={styles.header}>
+        <View>
+          <Text style={styles.retingTitle}>
+            Отзывы о работодателе {'\n'} {shift.companyName}
+          </Text>
+          <View style={styles.ratingView}>
+            <StarIcon width={24} height={24} fill={Colors.orangeDark} />
+            <Text>{shift.customerRating}</Text>
+            <Text>({shift.customerFeedbacksCount})</Text>
+          </View>
+        </View>
+        <View style={styles.marginHeader} />
+        <Image
+          style={styles.logo}
+          source={shift.logo ? { uri: shift.logo } : undefined}
+        />
+      </View>
+      <FeedBack worked={shift.workTypes[0].nameOne} />
     </View>
   );
 };
@@ -44,5 +78,27 @@ const styles = StyleSheet.create({
   },
   marginHeader: {
     flex: 1,
+  },
+  logo: {
+    width: 100,
+    height: 100,
+  },
+  retingTitle: {
+    fontSize: 16,
+    fontWeight: '500',
+  },
+  ratingView: {
+    flexDirection: 'row',
+    paddingVertical: 5,
+    alignItems: 'center',
+    gap: 5,
+    marginTop: 14,
+  },
+  marginText: {
+    marginBottom: 16,
+  },
+  marginTextPlan: {
+    marginBottom: 16,
+    marginTop: 6,
   },
 });
