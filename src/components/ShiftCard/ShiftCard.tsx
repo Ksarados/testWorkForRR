@@ -13,7 +13,7 @@ export const ShiftCard = ({ item }: { item: ShiftsData }) => {
 
   return (
     <TouchableOpacity
-      style={styles.container}
+      style={[styles.container, styles.shadow]}
       onPress={() => navigation.navigate('Details')}
     >
       <ShiftHeader item={item} />
@@ -27,7 +27,7 @@ export const ShiftCard = ({ item }: { item: ShiftsData }) => {
         <Text style={styles.footerText}>{item.companyName}</Text>
         <Text style={styles.footerText}>{item.address}</Text>
         <View style={styles.ratingView}>
-          <StarIcon width={24} height={24} fill='#FFA500' />
+          <StarIcon width={24} height={24} fill={Colors.orangeDark} />
           <Text>{item.customerRating}</Text>
           <Text>({item.customerFeedbacksCount})</Text>
         </View>
@@ -67,5 +67,15 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
     alignItems: 'center',
     gap: 5,
+  },
+  shadow: {
+    shadowColor: Colors.black,
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 5.41,
+    elevation: 2,
   },
 });

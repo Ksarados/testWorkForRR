@@ -1,4 +1,10 @@
-import { View, Text, StyleSheet, TextInput } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TextInput,
+  TouchableOpacity,
+} from 'react-native';
 import FilterIcon from '../../../assets/iconSvg/FilterIcon';
 import SearchIcon from '../../../assets/iconSvg/SearchIcon';
 import LocationIcon from '../../../assets/iconSvg/LocationIcon';
@@ -24,14 +30,17 @@ export const Header = ({ searchText, setSearchText }: HeaderProps) => {
           onChangeText={setSearchText}
         />
       </View>
-      <View>
+      <TouchableOpacity onPress={() => console.log('Выбрать фильтры')}>
         <FilterIcon />
-      </View>
-      <View style={styles.whiteView}>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.whiteView}
+        onPress={() => console.log('Выбрать город')}
+      >
         <LocationIcon />
         <Text>г. Иваново</Text>
         <ArrowDownIcon />
-      </View>
+      </TouchableOpacity>
     </View>
   );
 };
