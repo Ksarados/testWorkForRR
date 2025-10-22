@@ -10,13 +10,15 @@ import SearchIcon from '../../../assets/iconSvg/SearchIcon';
 import LocationIcon from '../../../assets/iconSvg/LocationIcon';
 import ArrowDownIcon from '../../../assets/iconSvg/ArrowDownIcon';
 import { Colors } from '../../constants/colors';
+import { observer } from 'mobx-react-lite';
+import { locationStore } from '../../store/locationStore';
 
 type HeaderProps = {
   searchText: string;
   setSearchText: (text: string) => void;
 };
 
-export const Header = ({ searchText, setSearchText }: HeaderProps) => {
+export const Header = observer(({ searchText, setSearchText }: HeaderProps) => {
   return (
     <View style={styles.container}>
       <View style={[styles.whiteView, styles.searchView]}>
@@ -37,12 +39,12 @@ export const Header = ({ searchText, setSearchText }: HeaderProps) => {
         onPress={() => console.log('Выбрать город')}
       >
         <LocationIcon />
-        <Text>г. Иваново</Text>
+        <Text>г. {locationStore.city || null}</Text>
         <ArrowDownIcon />
       </TouchableOpacity>
     </View>
   );
-};
+});
 
 const styles = StyleSheet.create({
   container: {

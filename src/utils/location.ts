@@ -1,4 +1,5 @@
 import Geolocation from 'react-native-geolocation-service';
+// eslint-disable-next-line react-native/split-platform-components
 import { PermissionsAndroid, Platform } from 'react-native';
 
 //запрос разрешения для андроид

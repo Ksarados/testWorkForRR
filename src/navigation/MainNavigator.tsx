@@ -11,6 +11,7 @@ import { shiftsStore } from '../store/shiftsStore';
 import { locationStore } from '../store/locationStore';
 import { ShiftsData } from '../types/shifts';
 import { getCurrentLocation } from '../utils/location';
+import { getCityFromCoordsOSM } from '../services/getCity';
 
 export type RootStackParamList = {
   Home: undefined;
@@ -35,14 +36,19 @@ export default observer(function MainNavigator() {
         const coords = await getCurrentLocation();
         if (coords) {
           locationStore.setLocation(coords.latitude, coords.longitude);
-          console.log('locationStore', coords.latitude, coords.longitude);
+          const city = await getCityFromCoordsOSM(
+            coords.latitude,
+            coords.longitude
+          );
+          if (city) {
+            locationStore.setCity(city);
+          }
         }
 
         const response = await getShifts(
           locationStore.location.latitude,
           locationStore.location.longitude
         );
-        console.log('response', response);
         if (response && Array.isArray(response?.data?.data)) {
           shiftsStore.addShifts(response.data.data);
         }
@@ -53,8 +59,6 @@ export default observer(function MainNavigator() {
 
     loadData();
   }, []);
-
-  console.log('Load:', shiftsStore.shifts);
 
   return (
     <Stack.Navigator
