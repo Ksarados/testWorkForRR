@@ -1,10 +1,13 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
-import { DetailsScreenNavigationProp } from '../navigation/MainNavigator';
-import { ShiftsData } from '../types/shifts';
 import { RouteProp } from '@react-navigation/native';
+import { DetailsScreenNavigationProp } from '../navigation/MainNavigator';
 import { RootStackParamList } from '../navigation/MainNavigator';
+import { Header } from '../components/UI/Header';
+import { ButtonBack } from '../components/UI/ButtonBack';
+import { InformationBoard } from '../components/Information/InformationBoard';
 
 type InformationScreenRouteProp = RouteProp<RootStackParamList, 'Details'>;
 
@@ -14,23 +17,39 @@ type Props = {
 
 export function InformationScreen({ route }: Props) {
   const navigation = useNavigation<DetailsScreenNavigationProp>();
+  const shift = route.params.item;
 
   console.log('route', route.params.item);
 
   return (
-    <View style={styles.container}>
-      <Text>Details Screen</Text>
-      <TouchableOpacity onPress={() => navigation.goBack()}>
-        <Text>Go to Home</Text>
-      </TouchableOpacity>
-    </View>
+    <SafeAreaView style={styles.container}>
+      <Header searchText='' setSearchText={() => {}} />
+      <View style={styles.subHeader}>
+        <ButtonBack onPress={() => navigation.goBack()} />
+        <Text style={styles.headerTitle}>{shift.workTypes[0].name}</Text>
+        <View style={styles.marginSubHeader} />
+      </View>
+      <InformationBoard shift={shift} />
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    //alignItems: 'center',
+    paddingHorizontal: 16,
+  },
+  subHeader: {
+    flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
+    gap: 10,
+  },
+  headerTitle: {
+    fontSize: 18,
+    fontWeight: '600',
+  },
+  marginSubHeader: {
+    flex: 1,
   },
 });
