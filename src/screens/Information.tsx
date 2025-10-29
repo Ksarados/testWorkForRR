@@ -1,4 +1,3 @@
-import React from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
@@ -40,7 +39,6 @@ export function InformationScreen({ route }: Props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    //alignItems: 'center',
     paddingHorizontal: 16,
   },
   subHeader: {
@@ -51,6 +49,7 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: 18,
     fontWeight: '600',
+    flexShrink: 1,
   },
   marginSubHeader: {
     flex: 1,

@@ -16,26 +16,27 @@ export const InformationBoard = ({ shift }: InformationBoardProps) => {
   const planWorkers = `${shift.currentWorkers} / ${shift.planWorkers}`;
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <DictionaryText
-          textKey='Требуется: '
-          textValue={shift.workTypes[0].name}
-        />
-        <View style={styles.marginHeader} />
-        <Price price={shift.priceWorker} />
+      <View style={styles.subHeader}>
+        <View style={styles.textWorker}>
+          <DictionaryText
+            textKey='Требуется:'
+            textValue={shift.workTypes[0].nameOne}
+            styleProps={styles.marginText}
+          />
+        </View>
       </View>
       <DictionaryText
-        textKey='Откликнулось: '
+        textKey='Откликнулось:'
         textValue={planWorkers}
         styleProps={styles.marginTextPlan}
       />
       <DictionaryText
-        textKey='Смена: '
+        textKey='Смена:'
         textValue={shiftDateAndTime}
         styleProps={styles.marginText}
       />
       <DictionaryText
-        textKey='Работодатель: '
+        textKey='Работодатель:'
         textValue={shift.companyName}
         styleProps={styles.marginText}
       />
@@ -44,6 +45,9 @@ export const InformationBoard = ({ shift }: InformationBoardProps) => {
         textValue={shift.address}
         styleProps={styles.marginText}
       />
+      <View style={styles.priceView}>
+        <Price price={shift.priceWorker} />
+      </View>
       <View style={[styles.header, styles.feedBack]}>
         <View style={styles.marginHeader}>
           <Text style={styles.retingTitle}>
@@ -82,6 +86,18 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
   },
+  subHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignContent: 'space-between',
+    alignItems: 'center',
+    gap: 8,
+    marginHorizontal: 0,
+  },
+  textWorker: {
+    flexShrink: 1,
+    flexWrap: 'wrap',
+  },
   marginHeader: {
     flex: 1,
   },
@@ -110,6 +126,12 @@ const styles = StyleSheet.create({
     marginTop: 6,
   },
   feedBack: {
-    marginVertical: 10,
+    marginTop: 48,
+    marginBottom: 10,
+  },
+  priceView: {
+    marginTop: 20,
+    justifyContent: 'center',
+    alignItems: 'flex-end',
   },
 });

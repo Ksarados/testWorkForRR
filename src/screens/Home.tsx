@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { StyleSheet, FlatList } from 'react-native';
 import { observer } from 'mobx-react-lite';
 import { shiftsStore } from '../store/shiftsStore';
@@ -22,6 +22,7 @@ export default observer(function HomeScreen() {
       <Header searchText={searchText} setSearchText={setSearchText} />
       <FlatList
         data={filteredShifts}
+        keyExtractor={(item) => item.id}
         renderItem={(item) => <ShiftCard item={item.item} />}
         showsVerticalScrollIndicator={false}
       />
