@@ -16,13 +16,14 @@ export const InformationBoard = ({ shift }: InformationBoardProps) => {
   const planWorkers = `${shift.currentWorkers} / ${shift.planWorkers}`;
   return (
     <View style={styles.container}>
-      {/* Из-за длинноно текста езжает Price и только с этим костылем работает корректно */}
       <View style={styles.subHeader}>
-        <Text style={styles.textWorker}>
-          <Text style={styles.textWorker2}>Требуется: </Text>
-          <Text>{shift.workTypes[0].nameOne}</Text>
-        </Text>
-        <Price price={shift.priceWorker} />
+        <View style={styles.textWorker}>
+          <DictionaryText
+            textKey='Требуется:'
+            textValue={shift.workTypes[0].nameOne}
+            styleProps={styles.marginText}
+          />
+        </View>
       </View>
       <DictionaryText
         textKey='Откликнулось:'
@@ -44,6 +45,9 @@ export const InformationBoard = ({ shift }: InformationBoardProps) => {
         textValue={shift.address}
         styleProps={styles.marginText}
       />
+      <View style={styles.priceView}>
+        <Price price={shift.priceWorker} />
+      </View>
       <View style={[styles.header, styles.feedBack]}>
         <View style={styles.marginHeader}>
           <Text style={styles.retingTitle}>
@@ -94,10 +98,6 @@ const styles = StyleSheet.create({
     flexShrink: 1,
     flexWrap: 'wrap',
   },
-  textWorker2: {
-    color: Colors.darkGray,
-    fontWeight: '500',
-  },
   marginHeader: {
     flex: 1,
   },
@@ -126,6 +126,12 @@ const styles = StyleSheet.create({
     marginTop: 6,
   },
   feedBack: {
-    marginVertical: 10,
+    marginTop: 48,
+    marginBottom: 10,
+  },
+  priceView: {
+    marginTop: 20,
+    justifyContent: 'center',
+    alignItems: 'flex-end',
   },
 });
